@@ -42,73 +42,24 @@
       <div class="col-xs-10 col-xs-offset-1 main-container">
         <!-- TODO: Add boolean for hide/show -->
         <div class="col-xs-12" ng-show="showListView">
-          <h1>Todo List</h1>
-          <div class="row">
-            <div class="col-xs-6 col-xs-offset-3">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </span>
-                <!-- TODO: Bind the input to our todo list -->
-                <input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
-              </div>
-            </div>
-          </div>
-          <!-- TODO: Repeat over our todo list items and setup filtering by search term. Easy peasy -->
-          <div ng-repeat="item in items | filter: searchText">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="col-xs-1"><input type="checkbox" name=""/></div>
-                <div class="col-xs-7">{{item.task}}</div>
-                <div class="col-xs-2">{{item.dueDate}}</div>
-                <div class="col-xs-1">{{item.assignedTo}}</div>
-                <div class="col-xs-1"><button class="btn btn-danger" ng-click="deleteItem(item.id)">X</button></div>
-              </div>
-            </div>
-          </div>
+   
         </div>
         <!-- TODO: Hide/show magic once more -->
         <div class="col-xs-12" ng-show="!showListView">
-          <h1>New Todo</h1>
-          <form>
-            <div class="form-group">
-              <label>Task Description</label>
-              <!-- TODO: Hook up this form to our JS for submitting -->
-              <input type="text" class="form-control" placeholder="Some important task" ng-model="newTask.task" />
-            </div>
-            <div class="form-group">
-              <label>Due Date</label>
-              <input type="text" class="form-control" placeholder="01/12/17" ng-model="newTask.dueDate"/>
-            </div>
-            <div class="form-group">
-              <label>Assigned To</label>
-              <input type="text" class="form-control" placeholder="cohort 18" ng-model="newTask.assignedTo" />
-            </div>
-            <div class="form-group">
-              <label>Location</label>
-              <input type="text" class="form-control" placeholder="attic" ng-model="newTask.location" />
-            </div>
-            <div class="form-group">
-              <label>Urgency</label>
-              <input type="text" class="form-control" placeholder="low" ng-model="newTask.urgency" />
-            </div>
-            <div class="form-group">
-              <label>Dependencies</label>
-              <input type="text" class="form-control" placeholder="brush chipper, monkey chow, the one ring" ng-model="newTask.dependencies" />
-            </div>
-            <!-- TODO: bind this button to a function -->
-            <button class="btn btn-default" ng-click="addNewItem()">Submit</button>
-          </form>
         </div>
       </div>
     </div>
   </div>
 
 <script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js">
-</script>
+<script type="text/javascript" src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/node_modules/angular/angular.min.js"></script>
 <script type="text/javascript" src="lib/node_modules/angular-route/angular-route.min.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/controllers/NavCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/TodoCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ItemListCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ItemNewCtrl.js"></script>
+
 </body>
 </html>
