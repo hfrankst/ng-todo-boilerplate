@@ -15,7 +15,7 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="col-xs-1"><input type="checkbox" name=""/></div>
-                <div class="col-xs-7">{{item.task}}</div>
+                <div class="col-xs-7"><a ng-href="#/items/details">{{item.task}}</a></div>
                 <div class="col-xs-2">{{item.dueDate}}</div>
                 <div class="col-xs-1">{{item.assignedTo}}</div>
                 <div class="col-xs-1"><button class="btn btn-danger" ng-click="deleteItem(item.id)">X</button></div>
