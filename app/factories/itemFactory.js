@@ -1,11 +1,12 @@
 "use strict";
 
-app.factory("ItemStorage", function (FirebaseURL, $q, $http) {
+app.factory("ItemStorage", ($q, $http, FBCreds) => {
 	
-	let getItemList = () => {
+
+	let getItemList = (user) => {
 		let items = [];
 		return $q((resolve, reject) => {
-			$http.get(`${FirebaseURL}/items.json`)
+			$http.get(`${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`)
 			.then((itemObject) => {
 				let itemCollection = itemObject.data;
 				Object.keys(itemCollection).forEach((key) => {
@@ -22,7 +23,7 @@ app.factory("ItemStorage", function (FirebaseURL, $q, $http) {
 
 	let postNewItem = (newItem) => {
 		return $q((resolve, reject) => {
-			$http.post(`${FirebaseURL}/items.json`,
+			$http.post(`${FBCreds.databaseURL}/items.json`,
 				JSON.stringify(newItem))
 			.then((ObjectFromFirebase) => {
 				resolve(ObjectFromFirebase);
@@ -37,7 +38,7 @@ app.factory("ItemStorage", function (FirebaseURL, $q, $http) {
 	let deleteItem = (itemId) => {
 		console.log("delete in factory", itemId);
 		return $q((resolve, reject) => {
-			$http.delete(`${FirebaseURL}/items/${itemId}.json`)
+			$http.delete(`${FBCreds.databaseURL}/items/${itemId}.json`)
 			.then((ObjectFromFirebase) => {
 				resolve(ObjectFromFirebase);
 			});

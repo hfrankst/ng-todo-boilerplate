@@ -1,11 +1,13 @@
 "use strict";
 
 
-app.controller('ItemListCtrl', function($scope, ItemStorage, SearchTermData){
+app.controller('ItemListCtrl', function($scope, ItemStorage, SearchTermData, AuthFactory){
 	
     $scope.searchText = SearchTermData;
-    
-    ItemStorage.getItemList()
+    let user = AuthFactory.getUser();
+    console.log("user", user);
+
+    ItemStorage.getItemList(user)
     .then(function(itemCollection){
         $scope.items = itemCollection;
     });
@@ -14,7 +16,7 @@ app.controller('ItemListCtrl', function($scope, ItemStorage, SearchTermData){
         console.log("delete item", itemId);
         ItemStorage.deleteItem(itemId)
         .then(function(response){
-            ItemStorage.getItemList().then(function(itemCollection){
+            ItemStorage.getItemList(user).then(function(itemCollection){
                 $scope.items = itemCollection;
             });
         });
