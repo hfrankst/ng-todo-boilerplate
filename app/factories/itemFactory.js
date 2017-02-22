@@ -20,11 +20,28 @@ app.factory("ItemStorage", function (FirebaseURL, $q, $http) {
 		});
 	};
 
-	let postNewItem = () => {
+	let postNewItem = (newItem) => {
+		return $q((resolve, reject) => {
+			$http.post(`${FirebaseURL}/items.json`,
+				JSON.stringify(newItem))
+			.then((ObjectFromFirebase) => {
+				resolve(ObjectFromFirebase);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+		});
 
 	};
 
 	let deleteItem = (itemId) => {
+		console.log("delete in factory", itemId);
+		return $q((resolve, reject) => {
+			$http.delete(`${FirebaseURL}/items/${itemId}.json`)
+			.then((ObjectFromFirebase) => {
+				resolve(ObjectFromFirebase);
+			});
+		});
 
 	};
 
