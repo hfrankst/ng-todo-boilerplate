@@ -4,6 +4,9 @@ app.controller('ItemNewCtrl', function($scope, ItemStorage, $location, AuthFacto
 
 	let user = AuthFactory.getUser();
 
+	$scope.title = "New Item";
+	$scope.btnText = "Submit";
+	
 	$scope.newTask = {
 		assignedTo: "",
 		dependencies: "",

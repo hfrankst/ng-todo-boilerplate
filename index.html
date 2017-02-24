@@ -11,17 +11,10 @@
   <div ng-include="'partials/navbar.html'"></div>
   <!-- TODO: Add a controller for our todo list -->
   <div ng-controller="ToDoCtrl">
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
-        <!-- Let's call a js function from our HTML. wat? -->
-        <button class="col-xs-6 btn btn-success" ng-click="newItem()">New Item</button>
-        <button class="col-xs-6 btn btn-info" ng-click="allItem()"> All Items</button>
-      </div>
-    </div>
+  
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 main-container">
           <div class="col-xs-12" ng-view></div>
-        </div>
       </div>
     </div>
   </div>
@@ -45,6 +38,7 @@
 <script type="text/javascript" src="app/controllers/ItemNewCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/ItemViewCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/UserCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ItemEditCtrl.js"></script>
 
 
 </body>

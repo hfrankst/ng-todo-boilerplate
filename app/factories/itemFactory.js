@@ -1,11 +1,14 @@
 "use strict";
 
-app.factory("ItemStorage", ($q, $http, FBCreds) => {
+app.factory("ItemStorage", ($q, $http, FBCreds, AuthFactory) => {
 	
 
-	let getItemList = (user) => {
+	let getItemList = () => {
 		let items = [];
+		let user = AuthFactory.getUser();
+
 		return $q((resolve, reject) => {
+			// console.log("list url", `${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`);
 			$http.get(`${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`)
 			.then((itemObject) => {
 				let itemCollection = itemObject.data;
@@ -46,5 +49,35 @@ app.factory("ItemStorage", ($q, $http, FBCreds) => {
 
 	};
 
-	return {getItemList, postNewItem, deleteItem};
+	let getSingleItem = (itemId) => {
+		return $q(function(resolve, reject){
+			$http.get(`${FBCreds.databaseURL}/items/${itemId}.json`)
+			.then(function (itemObject) {
+				resolve(itemObject.data);
+			})
+			.catch(function(error){
+				reject(error);
+			});
+		});
+	};
+
+	let updateItem = (itemId, editedItem) => {
+		return $q(function(resolve, reject){
+			$http.patch(`${FBCreds.databaseURL}/items/${itemId}.json`, 
+				angular.toJson(editedItem))
+			.then(function(ObjectFromFirebase) {
+				resolve(ObjectFromFirebase);
+			})
+			.catch(function(error){
+				reject(error);
+			});
+		});
+	};
+
+
+
+
+
+
+	return {getItemList, postNewItem, deleteItem, getSingleItem, updateItem};
 });

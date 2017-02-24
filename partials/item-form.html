@@ -1,4 +1,4 @@
- <h1>New Todo</h1>
+ <h1>{{title}}</h1>
           <form>
             <div class="form-group">
               <label>Task Description</label>
@@ -26,5 +26,5 @@
               <input type="text" class="form-control" placeholder="brush chipper, monkey chow, the one ring" ng-model="newTask.dependencies" />
             </div>
             <!-- TODO: bind this button to a function -->
-            <button class="btn btn-default" ng-click="addNewItem()">Submit</button>
+            <button class="btn btn-default" ng-click="addNewItem()">{{btnText}}</button>
           </form>

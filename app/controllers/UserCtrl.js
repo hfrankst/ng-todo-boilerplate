@@ -62,8 +62,8 @@ console.log("USERCONTRol");
             var user = result.user.uid;
             console.log("logged in user:", user);
             //Once logged in, go to another view
-            $location.path("#!/items/list");
-            $scope.$apply();
+            $window.location.href = "#!/items/list";
+            // $scope.$apply();
         }).catch(function(error) {
             // Handle the Errors.
             console.log("error with google login", error);
